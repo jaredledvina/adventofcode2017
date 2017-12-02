@@ -8,15 +8,33 @@ def cleanup_input():
             cleaned.append(clean_line)
     return cleaned
 
-def generate_difference(item):
-    return max(item) - min(item)
 
-def generate_checksum():
+def generate_difference(line):
+    return max(line) - min(line)
+
+
+def generate_divisible(line):
+    while len(line):
+        item = line.pop()
+        for remaining in line:
+            if item % remaining == 0:
+                return int(item / remaining)
+            elif remaining % item == 0:
+                return int(remaining / item)
+
+
+def generate_checksum(checksum_type):
     checksum = 0
     cleaned_input = cleanup_input()
     for line in cleaned_input:
-        difference =  generate_difference(line)
-        checksum = checksum + difference
+        if checksum_type == 'difference':
+            line_check =  generate_difference(line)
+        elif checksum_type == 'divisible':
+            line_check = generate_divisible(line)
+        else:
+            print('checksum_type', checksum_type, 'is not supported!')
+        checksum = checksum + line_check
     return checksum
 
-print('Checksum is:', generate_checksum())
+print('The difference checksum is:', generate_checksum(checksum_type='difference'))
+print('The divisible checksum is:', generate_checksum(checksum_type='divisible'))
