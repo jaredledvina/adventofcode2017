@@ -10,10 +10,18 @@ def cleanup_input():
 
 
 def generate_difference(line):
+    """
+    >>> generate_difference([1, 2, 3, 4, 5])
+    4
+    """
     return max(line) - min(line)
 
 
 def generate_divisible(line):
+    """
+    >>> generate_divisible([2, 3, 4, 5])
+    2
+    """
     while len(line):
         item = line.pop()
         for remaining in line:
@@ -36,5 +44,6 @@ def generate_checksum(checksum_type):
         checksum = checksum + line_check
     return checksum
 
-print('The difference checksum is:', generate_checksum(checksum_type='difference'))
-print('The divisible checksum is:', generate_checksum(checksum_type='divisible'))
+if __name__ == '__main__':
+    print('The difference checksum is:', generate_checksum(checksum_type='difference'))
+    print('The divisible checksum is:', generate_checksum(checksum_type='divisible'))
