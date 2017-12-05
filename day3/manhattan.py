@@ -109,7 +109,6 @@ def squared_square(maximum):
         new_sum += location_bits.get((x + 1 , y - 1), 0)
         new_sum += location_bits.get((x - 1 , y + 1), 0)
         new_sum += location_bits.get((x - 1 , y - 1), 0)
-        print('Sum for:', x, y, 'is', new_sum)
         location_bits[(x, y)] = new_sum
         previous_sum = location_bits[previous_location]
         if steps == max_steps:
